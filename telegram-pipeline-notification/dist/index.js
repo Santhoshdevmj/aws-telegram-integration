@@ -20,20 +20,21 @@ const Environment = () => {
 function getIcon(state) {
     switch (state) {
         case "SUCCEEDED":
-            return `✅`;
+            return `Pipeline execution Succeeded`;
         case "FAILED":
-            return "❗";
+            return "Pipeline Execution Failed";
         case "CANCELED":
-            return "🛑";
+            return "Pipeline Execution Canceled";
         default:
-            return "ℹ️";
+            return "Pasture pets lambda function";
     }
 }
 const Message = (event) => {
     const pipelineEvent = ("Records" in event)
-        ? JSON.parse(event.Records[0].Sns.Message)
+
+        ? JSON.parse(event.Records[0].Sns.MessageId)
         : event;
-    const { state, pipeline } = pipelineEvent.detail;
+    const { state, pipeline } = pipelineEvent;
     return `${getIcon(state)} ${pipeline} ${state}`;
 };
 
