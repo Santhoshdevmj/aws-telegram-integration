@@ -4,14 +4,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var https = require('https');
 
-const botApiKeyRegEx = /^\d+:[\d\w_]+$/;
-const chatIdRegEx = /^-?\d+$/;
+
 const Environment = () => {
     const { BOT_API_KEY: botApiKey, CHAT_ID: chatId } = process.env;
-    if ("string" !== typeof botApiKey || !botApiKeyRegEx.test(botApiKey)) {
+    if ("string" !== typeof botApiKey/*  || !botApiKeyRegEx.test(botApiKey) */) {
         throw new Error("Invalid Configuration: Bot API Key");
     }
-    if ("string" !== typeof chatId || !chatIdRegEx.test(chatId)) {
+    if ("string" !== typeof chatId/* || !chatIdRegEx.test(chatId) */) {
         throw new Error(`Invalid Configuration: Chat ID`);
     }
     return Object.freeze({ botApiKey, chatId });
@@ -26,7 +25,7 @@ function getIcon(state) {
         case "CANCELED":
             return "Pipeline Execution Canceled";
         default:
-            return "Pasture pets lambda function";
+            return "Pasture pets lambda2 function";
     }
 }
 const Message = (event) => {
